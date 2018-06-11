@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>winne博客~文章</title>
+  <meta name="keywords" content="winne博客,winne前端,博客,前端,前端资料,winne,前端开发,学习" />
+  <meta name="description" content="winne博客是一个前端资料分享博客，前端学习资料的记录，前端资料的分享，前端技术交流，个人情感生活及个人资料的分享之站。前端的学习休闲站。" />
+  <link href="__PUBLIC__ico/ico.ico" rel="Shortcut Icon" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/mainCommon.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/atelier-plateau-light.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/article.css">
+</head>
+<body data-spy="scroll" data-target=".navbar-article" style="position: relative;">
+{include file="common/detail_header" /} 
+<div id="home" class="article-main-wrap">
+  
+  <div id="main" class="main-content">
+    <div id="mainContent" class="left-content">
+        <div class="forFlow">
+            <h1 class="article-title"><a id="{$article_detail.title_anchor_id}">{$article_detail.title}</a></h1>
+            <p class="article-tips">
+              <i class="iconfont">&#xe64e;</i><span style="margin-right: 20px;">发表于：{$article_detail.article_time}</span>              
+              <i class="iconfont">&#xe61d;</i><span>浏览：{$article_detail.click}</span> 
+              <span class='favorite {if condition="($favorite['favoriteN'] == 1) AND ($Request.session.userid == $favorite['uid'])"}active{/if}' id="favorite" data-info="{$article_detail.id}"><i data-info="{$Request.session.userid}" data-uid="{$favorite['uid']}" class="iconfont">&#xe618;</i>收藏</span>            
+            </p>
+            <!-- 文章的主体内容信息 -->
+            <div class="article-detail">
+              
+              {$article_detail.content}
+            </div>
+            <!--end: article-detail -->
+
+         <!--  </div> -->
+            
+
+
+            <!-- 留言内容 -->
+            <div class="comment-mes" id="comment-mes">
+             
+              <div class="comment-show">
+                <!--PC和WAP自适应版-->
+                <div id="SOHUCS" ></div> 
+                <script type="text/javascript"> 
+                (function(){ 
+                var appid = 'cytyoWIi2'; 
+                var conf = 'prod_09532bf8da0a410cb4d433aded759b59'; 
+                var width = window.innerWidth || document.documentElement.clientWidth; 
+                if (width < 960) { 
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+              </div>
+            </div>
+
+        </div><!--end: forFlow -->
+    </div><!--end: mainContent 主体内容容器-->
+    <!-- 右侧文章导航 -->
+    <div id="sideBar" class="right-content">
+      <div class="article-target navbar-article">
+        <span class="line-hr"></span>
+        <span style="color:#965c2b;"><i class="iconfont">&#xe640;</i>文章导航：</span>
+        <ul class="article-index nav nav-tabs">
+          <li><a href="#{$article_detail.title_anchor_id}" title="{$article_detail.title}">{$article_detail.title}</a></li>
+          {foreach anchor as $item}
+          <li><a href="#{$item.id}" title="{$item.name}">{$item.name}</a></li>
+          {/foreach}
+         
+        </ul>
+      </div>
+      
+    </div><!--end: main -->
+    <div class="clear"></div>
+  </div>    
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<div id="floor" style="display: none;">
+</div>
+{include file="common/footer" /} 
+
+<!--PageEndHtml Block End-->
+<!-- <script src="./js/article.js"></script> -->
+<script src="__PUBLIC__js/jquery.js"></script>
+<script src="__PUBLIC__js/toTop.js"></script>
+<script src="__PUBLIC__js/bootstrap.js"></script>
+<script src="__PUBLIC__js/article.js"></script>
+<script src="__PUBLIC__js/info_share.js"></script>
+<script src="__PUBLIC__js/highlight.pack.js"></script>
+<script>
+  hljs.initHighlightingOnLoad();
+</script>
+</body>
+</html>

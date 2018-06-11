@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>winne~~博客-生活情感</title>
+    <meta name="keywords" content="winne博客,winne前端，情感生活，大学，工作" />
+    <meta name="description" content="情感生活篇是个人情感生活的记录与分享。" />  
+    <link href="__PUBLIC__ico/ico.ico" rel="Shortcut Icon" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__css/mainCommon.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__css/lifeEmotion.css">
+</head>
+<body>
+
+{include file="common/main_header" /} 
+    <!-- 中间主体内容 -->
+<div class="body-content-wrapper">
+    {volist name="emotionArticles" id="articleItem"}
+    <article class="essay">
+        <h2>{$articleItem.title}</h2>
+        <div class="clear">
+        <img class="img" src="{if condition="$articleItem['pic'] neq ''"}__IMG__{$articleItem.pic}{else /}__PUBLIC__images/error.png{/if}" alt="{$articleItem.title}" />
+        <p>
+        {$articleItem.descript}
+        </p>
+        </div>
+        <a href="{:url('article/index',array('article_id' => $articleItem['id']))}">阅读原文</a>
+    </article>
+    {/volist}
+    <div class="pages" style="width: 950px;margin: 40px auto 0;">
+        {$emotionArticles->render()}
+    </div>
+    </div>
+{include file="common/footer" /} 
+    <script src="__PUBLIC__js/jquery.js"></script>
+    <script src="__PUBLIC__js/toTop.js"></script>
+    <script src="__PUBLIC__js/lifeEmotion.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>修改文章锚点</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__PUBLIC__style/bootstrap.css" rel="stylesheet">
+    <link href="__PUBLIC__style/font-awesome.css" rel="stylesheet">
+    <link href="__PUBLIC__style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__PUBLIC__style/beyond.css" rel="stylesheet" type="text/css">
+    <!-- <link href="__PUBLIC__style/demo.css" rel="stylesheet">
+    <link href="__PUBLIC__style/typicons.css" rel="stylesheet"> -->
+    <link href="__PUBLIC__style/animate.css" rel="stylesheet">
+    
+</head>
+<body>
+	<!-- 头部 -->
+    {include file="common/top" /} 
+
+    <!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			<!-- Page Sidebar -->
+            {include file="common/left" /} 
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                             <a href="#">文章锚点</a>
+                        </li>
+                        <li>
+                             <a href="{:url('article_anchor/article_anchor_list')}">文章锚点管理</a>
+                        </li>
+                        <li class="active">修改文章锚点</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">修改文章锚点</span>
+            </div>
+            <div class="widget-body">
+                <div id="horizontal-form">
+                    <form class="form-horizontal" role="form" autocomplete="off" action="" method="post">
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <label for="group_id" class="col-sm-2 control-label no-padding-right">文章锚点所属的文章</label>
+                            <div class="col-sm-6">
+                                <select required="" class="form-control" name="article_id" id="first-nav">
+                                    <option value="">请选择</option>
+                                    {volist name="articleres" id="vo"}
+                                    <option {if condition="$vo['id'] eq $article_anchors['article_id']"}selected="selected"{/if} value="{$vo.id}">{$vo.title}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必选</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_name" class="col-sm-2 control-label no-padding-right">文章锚点id名(集合)</label>
+                            <div class="col-sm-6">
+                                <input required="" class="form-control" id="id_name" placeholder="" name="id_name" type="text" value="{$article_anchors.id_name}">
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="anchor_name" class="col-sm-2 control-label no-padding-right">文章锚点标题(集合)</label>
+                            <div class="col-sm-6">
+                                <textarea required="" class="form-control" name="anchor_name">{$article_anchors.anchor_name}</textarea>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">保存信息</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+	    <!--Basic Scripts-->
+    <script src="__PUBLIC__js/jquery.js"></script>
+    <script src="__PUBLIC__js/bootstrap.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__PUBLIC__js/beyond.js"></script>
+    
+
+
+</body></html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>winne工具分享</title>
+  <meta name="keywords" content="winne博客,winne前端,工具分享" />
+  <meta name="description" content="winne博客分享有用工具，提供绿色下载，包括前端、后台、办公等工具" />
+  <link href="__PUBLIC__ico/ico.ico" rel="Shortcut Icon" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/mainCommon.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/article.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/info_share.css">
+</head>
+<body data-spy="scroll" data-target=".navbar-article" style="position: relative;">
+{include file="common/detail_header" /} 
+<div id="home" class="tools-main-wrap">
+  
+  <div id="main" class="main-content">
+    <div id="mainContent" class="left-content">
+        <div class="forFlow">
+            
+            <!-- 工具的主体内容信息 -->
+            <div class="tools-detail">
+              <article>
+                <header class="article-header">
+                    <h1 class="tools-name">{$tool_detail.name}</h1>
+                </header>
+                <div class="software">
+                    <div class="soft-img">
+                       <img src="{if condition="$tool_detail['pic'] neq ''"}__IMG__{$tool_detail.pic}{else /}__PUBLIC__images/error.png{/if}">
+                    </div>
+                    
+                      <div class="soft-mes">
+                          <p>推荐指数：<i class="font-icon"></i>
+                          <span >{$tool_detail.recommend_num}分</span></p>
+                          <p >更新时间：{$tool_detail['create_time']}</p>
+                          <p>软件大小：{$tool_detail.soft_size}</p>
+                          <p>下载次数：<span id="download_num">{$tool_detail.download_num}</span>次</p>
+                          <p>软件版本：{$tool_detail.version}</p>
+                          <div>
+                              <a {if condition="$tool_detail['download_url'] neq ''"}target="_blank"{else /}target="_self"{/if} href="{$tool_detail.download_url}" id="download-click" data-info="{$tool_detail.id}">
+                              {if condition="$tool_detail['download_url'] neq ''"}点击下载{else /}暂无下载链接{/if}
+                              </a>
+                          </div>
+                      </div>
+                     
+                    <div class="recommand"></div>
+                </div>
+                <div class="content">
+                    <span>软件简介</span>
+                    <p>
+                      {$tool_detail.soft_content}
+                    </p>
+                </div>
+                <div class="content">
+                    <span>安装说明</span>
+                    <p>
+                      {$tool_detail.soft_desc}
+                    </p>
+                </div>
+                <p class="download-tips">下载说明：winne博客下载资源都是免费，所有资源都经过检测，绿色无毒，请放心下载！</p>
+              </article>
+
+            </div><!--end: tools-detail -->
+
+         <!--  </div> -->
+
+            <!-- 留言内容 -->
+            <div class="comment-mes" id="comment-mes">
+              <div class="comment-show">
+                <!--PC和WAP自适应版畅言-->
+                <div id="SOHUCS" ></div> 
+                <script type="text/javascript"> 
+                (function(){ 
+                var appid = 'cytyoWIi2'; 
+                var conf = 'prod_09532bf8da0a410cb4d433aded759b59'; 
+                var width = window.innerWidth || document.documentElement.clientWidth; 
+                if (width < 960) { 
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+              </div>
+            </div>
+
+        </div><!--end: forFlow -->
+    </div><!--end: mainContent 主体内容容器-->
+    <!-- 右侧文章导航 -->
+    <div id="sideBar" class="right-content">
+      <div class="other-tools clear">
+        <!--  工具手册 start    -->
+            <div id="tool-manual" class="right-bar">
+                <h3>
+                    <i class="iconfont">&#xe68c;</i>其他工具手册</h3>
+                <div class="manual-content">
+                    <ul>
+                        {volist name="recommend_tools" id="item"}
+                        <li><i class="iconfont">&#xe63d;</i><a href="{:url('toolsShare/index',array('tool_id' => $item['id']))}">{$item.name}</a></li>
+                        {/volist}
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1TgPD06KAjfT5LR449TipBA" target="_blank">HTML参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1-kc5jS97ugdwMAlxhgqRPA" target="_blank">CSS参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1xFJjJSkEnHoBxleaeGHErA" target="_blank">Json参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1Pm5-ubeeLmGpW1MF76OZZg" target="_blank">JQuery参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1QVpCb_n_lVYBsEm94TOQEQ" target="_blank">JavaScript参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/16B8cC_NSlqrmF4csGOajmA" target="_blank">HTML5参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1ulbnZ5p2EqqIhFzrysX12Q" target="_blank">Ajax参考手册</a></li>
+                         <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1Xif11jullGmtdH2ZYSixhw" target="_blank">Bootstrap3参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1oq8D5Jy8vK1caHh7KgwExQ" target="_blank">AngularJS参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1H7rL8ohW1tju6sPZZp7lwQ" target="_blank">Vue-router参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/16npQGiGx1J5V55bgKKyfGg" target="_blank">Vuex参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/126DctUoiyr_jrde9LHUrtg" target="_blank">SQL参考手册</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--  工具手册 end    -->
+      </div>
+      
+    </div><!--end: main -->
+    <div class="clear"></div>
+  </div>    
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<div id="floor" style="display: none;">
+    <!-- <a href="javascript:;"><img src="__PUBLIC__images/top.gif" alt=""></a> -->
+</div>
+{include file="common/footer" /} 
+
+<!--PageEndHtml Block End-->
+<script src="__PUBLIC__js/toTop.js"></script>
+<script src="__PUBLIC__js/jquery.js"></script>
+<script src="__PUBLIC__js/info_share.js"></script>
+</body>
+</html>

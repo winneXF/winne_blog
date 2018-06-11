@@ -1,0 +1,81 @@
+<!--手机端导航开始-->
+    <div id="top_nav">
+        <div class="top_navbtn" id="navHeight">            
+            <div class="footerLines" id="navBtn">
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!--菜单-->
+    <div class="nav_menu" id="navMenu">
+        <ul class="menu_lists">
+            <li><a href="{:url('index/index')}" target="_self">首页</a><a href="{:url('liveLearn/index',array('nav_id' => 1))}" target="_self">学无止境</a></li>
+            <li><a href="{:url('lifeEmotion/index',array('nav_id' => 5))}" target="_self">生活情感</a><a href="{:url('message/index')}" target="_self">给我留言</a></li>
+            <li><a hhref="{:url('aboutMe/index')}" target="_self">关于自己</a><a href="javascript:;" target="_self">ajax</a></li>
+        </ul>
+    </div>
+    <!--手机端导航结束-->
+    <!-- pc端导航栏 -->
+    <ul class="block-menu">
+      <li>
+        <a href="{:url('index/index')}" target="_self" class="three-d">
+          首页
+          <span class="three-d-box">
+            <span class="front">首页</span>
+            <span class="back">首页</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="{:url('liveLearn/index',array('nav_id' => 1))}" target="_self" class="three-d">
+          学无止境
+          <span class="three-d-box">
+            <span class="front">学无止境</span>
+            <span class="back">学无止境</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="{:url('lifeEmotion/index',array('nav_id' => 5))}" target="_self" class="three-d">
+          生活情感
+          <span class="three-d-box">
+            <span class="front">生活情感</span>
+            <span class="back">生活情感</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="{:url('message/index')}" target="_self" class="three-d">
+          给我留言
+          <span class="three-d-box">
+            <span class="front">给我留言</span>
+            <span class="back">给我留言</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="{:url('aboutMe/index')}" target="_self" class="three-d">
+          关于自己
+          <span class="three-d-box">
+            <span class="front">关于自己</span>
+            <span class="back">关于自己</span>
+          </span>
+        </a>
+      </li>
+      <li class="search-wrap">
+        <form id="search-form" autocomplete="off" target="_self" method="get" action="{:url('search/index')}">   
+            <a href="javascript:;" target="_blank" class="three-d search">
+              <span>
+              <input type="text" id="search-input" name="keywords" class="search-text" placeholder="搜索winne...">
+              <i class="iconfont search-icon">&#xe634;</i>
+              <input type="submit" value="搜索" id="search-submit" class="search-submit">
+              <input type="hidden" id="login-user" value="" data-info="{$Request.session.userid}">
+              </span>
+            </a>                     
+        </form>   
+        
+      </li>
+    </ul>
+    <!--PageBeginHtml Block End-->
+
+    <!--头部done-->

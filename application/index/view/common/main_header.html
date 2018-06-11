@@ -1,0 +1,65 @@
+<div class="body-top-wrapper">
+    <div id="body-top">
+        <div id="title">
+        <h1>winne博客</h1>
+        </div>
+        <nav id="nav">
+            <ul class="nav-menu clear">
+                <li><i class="iconfont">&#xe600;</i><a class="nav-text" href="{:url('index/index')}">首页</a><span></span></li>
+                {volist name="cateres" id="cate"}
+                <li>
+                  
+                    {if condition="$cate.id eq 1"}
+                    <a class="nav-text" href="{:url('liveLearn/index',array('nav_id' => $cate['id']))}">{$cate.nav_name}</a>
+                    <span></span>
+                    <div class="nav-detail">
+                        <?php foreach($cate['children'] as $k2=>$v2): ?>
+                        <a href="{:url('liveLearn/index',array('nav_id' => $v2['id']))}">{$v2.nav_name}</a>
+                        <?php endforeach; ?>
+                    </div>
+                    {elseif condition="$cate.id eq 5"}
+                    <a class="nav-text" href="{:url('lifeEmotion/index',array('nav_id' => $cate['id']))}">{$cate.nav_name}</a>
+                    <span></span>
+                    <div class="nav-detail">
+                        <?php foreach($cate['children'] as $k2=>$v2): ?>
+                        <a href="{:url('lifeEmotion/index',array('nav_id' => $v2['id']))}">{$v2.nav_name}</a>
+                        <?php endforeach; ?>
+                    </div>                    
+                    {/if}
+
+                    
+                </li>
+                {/volist}
+                <!-- <li>
+                    <a class="nav-text" href="lifeEmotion.html">生活情感</a>
+                    <span></span>
+                    <div class="nav-detail">
+                        <a href="">大学生活</a>
+                        <a href="">个人情感</a>
+                    </div>
+                </li> -->
+
+                <li><a class="nav-text" href="{:url('message/index')}">给我留言</a><span></span></li>
+                <li><a class="nav-text" href="{:url('aboutMe/index')}">关于自己</a><span></span></li>
+            </ul>
+        </nav>
+        
+        {if condition="$Request.session.username eq ''"}
+        <div class="message">
+        <a href="{:url('register/index')}" target="_blank"><span><i class="iconfont">&#xe604;</i>注册</span></a>
+        <a href="{:url('login/index')}" target="_blank"><span><i class="iconfont">&#xe65c;</i>登录</span></a>
+        </div>
+       {/if}
+       {if condition="$Request.session.username neq ''"}
+       <div class="user-login">
+           <div class="user" href="javascript:;">欢迎：<span id="login-user" data-info="{$Request.session.userid}" data-state="{$Request.session.state}">{$Request.session.username}</span>
+           <ul class="more-me">
+               <li class="favorite"><a href="{:url('favorite/index')}">我的收藏夹</a></li>
+           </ul>
+           </div> 
+           <a class="logout" id="logout" >退出登录</a> 
+       </div>            
+       {/if}
+        
+    </div>
+</div>

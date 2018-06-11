@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>winne博客~首页</title>
+    <meta name="keywords" content="winne博客,winne前端,winne,前端博客,前端,前端资料,前端开发,学习" />
+    <meta name="description" content="winne博客是一个前端资料分享博客，HTML资料，CSS资料，JavaScript资料，前端学习资料的记录，前端资料的分享，前端技术交流，个人情感生活及个人资料的分享之站。前端的学习休闲站。" />
+    <link href="__PUBLIC__ico/ico.ico" rel="Shortcut Icon" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__css/mainCommon.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__css/index.css">
+</head>
+<body>
+
+    {include file="common/main_header" /} 
+    <div class="main-wrapper clear">
+        <div class="info">
+            <p>
+                您现在所在的位置：winne博客 >> <span>首页</span>
+            </p>
+            <div id="search">
+               <input type="text" placeholder="百度一下，你就知道"/>
+               <div class="btn"><a target="_blank" href="https://www.baidu.com" rel="nofollow">百度搜索</a></div>
+                <ul>
+                </ul>
+            </div>
+        </div> 
+        <div class="main-left clear">
+        <!--  精彩推荐 3D旋转 start    -->
+            <div class="hot-news clear">
+                <div class="hot-news-top">
+                    <span>RECOMMEND</span> <span>精彩推荐</span>
+                </div>
+                <div class="hot-change clear">
+                    <div class="side-img">
+                        {foreach recommend_article_tag as $item}
+                        <a href="{:url('article/index',array('article_id' => $item['aid']))}"><img class="active" data-src="{if condition="$item['pic'] neq ''"}__IMG__{$item.pic}{else /}__PUBLIC__images/error.png{/if}" src="__PUBLIC__images/lazy.png" alt="{$item.title}" title="{$item.title}" /></a>
+                        {/foreach}
+                       
+                    </div>
+                    <div class="box">
+                        <div class="side-img-show">
+                            {foreach recommend_article_tag as $item}
+                            <a class="img-rote" href="{:url('article/index',array('article_id' => $item['aid']))}">
+                                <img data-src="{if condition="$item['pic'] neq ''"}__IMG__{$item.pic}{else /}__PUBLIC__images/error.png{/if}" alt="{$item.title}" src="__PUBLIC__images/lazy.png" title="{$item.title}" />
+                            </a>                            
+                            {/foreach}
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  精彩推荐 3D旋转 end    -->
+            <!--  各类工具推荐 start    -->
+            <div id="tool">
+                <h3>
+                    <i class="iconfont">&#xe68c;</i>工具分享</h3>
+                <ul class="tool-nav">
+                    <!-- <li class="active"><span>前端代码编辑</span></li> -->
+                    {foreach toolTabName as $item}
+                    <li class="{if condition='$item.id eq 1'}active{/if}"><span>{$item.tabname}</span></li>
+                    {/foreach}
+                   
+                </ul>
+                <div class="tool-content">
+                    {volist name="toolsCon" id="item"}
+                    <div {if condition='$item.id eq 1'}style="display:block;"{/if}>
+                        <ul class="tools-software1 clear">
+                            <?php foreach($item['children'] as $k2=>$v2): ?>
+                            <li>
+                                <a href="{:url('ToolsShare/index',array('tool_id' => $v2['id']))}">
+                                    <div class="tools_pic" style='background: url("{if condition="$v2['bg_url'] neq ''"}__IMG__{$v2.bg_url}{/if}") 0 -{$k2*60}px no-repeat;'>
+                                   
+                                    </div>
+                                    <span>{$v2.name}</span>
+                                </a>
+                            </li>
+                            <?php endforeach; ?>
+                           
+                        </ul>
+                    </div>
+                    {/volist}
+
+                </div>
+            </div>
+            <!--  各类工具推荐 end    -->
+            <!--  热门文章 start    -->
+            <div id="hot-article">
+                <h3>
+                    <i class="iconfont">&#xe629;</i>热门文章</h3>
+                <ul>
+                    {volist name="hot_articles" id="item"}
+                    <li><i class="iconfont" style="color: #f61213;">&#xe622;</i><span>
+                    <a data-hover="{$item.title}"
+                        href="{:url('article/index',array('article_id' => $item['id']))}">{$item.title}</a></span><span><i class="iconfont">&#xe618;</i>{$item.click}浏览</span>
+                    </li>
+                    {/volist}
+                    
+                </ul>
+            </div>
+            <!--  热门文章 end    -->
+            <!--  HTML/CSS书籍推荐 start    -->
+            <div id="basic-book">
+                <h3>
+                    <i class="iconfont">&#xe778;</i>HTML/CSS书籍推荐</h3>
+                <p class="change-other">
+                    <a href="javascript:;" id="html-css-refresh"><i class="iconfont">&#xe769;</i>换一批</a>
+                </p>
+                <div class="html-css-list">
+                    {volist name="html_css" id="item"}
+                    <div class="book1">
+                        <img data-src="{if condition="$item['pic'] neq ''"}__IMG__{$item.pic}{else /}__PUBLIC__images/error.png{/if}" alt="{$item.bookname}" src="__PUBLIC__images/lazy.png" title="{$item.bookname}" />
+                        <p>
+                            <a class="bookname" href="{:url('BookShare/index',array('book_id' => $item['id']))}" title="{$item.bookname}">{$item.bookname} </a><span>{$item.recommend_show_desc}</span>
+                        </p>
+                    </div>
+                    {/volist}
+                </div>
+                
+               
+            </div>
+            <!--  HTML/CSS书籍推荐 end    -->
+            <!--  js书籍推荐 start    -->
+            <div id="js-book">
+                <h3>
+                    <i class="iconfont">&#xe602;</i>javascript书籍推荐
+                    
+                </h3>
+                <p class="change-other">
+                    <a href="javascript:;" id="js-refresh"><i class="iconfont">&#xe769;</i>换一批</a>
+                </p>
+                <div class="js-content">
+                    {volist name="javascript" id="item"}
+                    <div>
+                        <figure>
+                           <div class="light"></div>
+                           <img data-src="{if condition="$item['pic'] neq ''"}__IMG__{$item.pic}{else /}__PUBLIC__images/error.png{/if}" src="__PUBLIC__images/lazy.png" alt="{$item.bookname}" />
+                           
+                           <figcaption><a href="{:url('BookShare/index',array('book_id' => $item['id']))}">{$item.bookname}</a></figcaption>
+                        </figure>
+                    </div>
+                    {/volist}
+                   
+                </div>
+            </div>
+           <!--  js书籍推荐 end    --> 
+        </div>
+        <div class="main-right clear">
+        <!--  扫一扫 start    -->
+            <div class="friends">
+                <p>
+                    <i class="iconfont">&#xe64a;</i>扫一扫~~你就知道</p>
+                <ul>
+                    <li class="active">wechat 微信</li>
+                    <li>QQ </li>
+                </ul>
+                <div class="chat-methods">
+                    <img data-src="__PUBLIC__images/WeChat.png" src="__PUBLIC__images/lazy.png" alt="wechat" />
+                    <img style="display: none;" data-src="__PUBLIC__images/qq.png" src="__PUBLIC__images/lazy.png" alt="QQ" />
+                </div>
+            </div>
+            <!--  扫一扫 end    -->
+            <!--  工具手册 start    -->
+            <div id="tool-manual">
+                <h3>
+                    <i class="iconfont">&#xe698;</i>工具手册</h3>
+                <div class="manual-content">
+                    <ul>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1TgPD06KAjfT5LR449TipBA" target="_blank">HTML参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1-kc5jS97ugdwMAlxhgqRPA" target="_blank">CSS参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1xFJjJSkEnHoBxleaeGHErA" target="_blank">Json参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1Pm5-ubeeLmGpW1MF76OZZg" target="_blank">JQuery参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1QVpCb_n_lVYBsEm94TOQEQ" target="_blank">JavaScript参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/16B8cC_NSlqrmF4csGOajmA" target="_blank">HTML5参考手册</a></li>
+                        <li><i class="iconfont">&#xe63d;</i><a href="https://pan.baidu.com/s/1ulbnZ5p2EqqIhFzrysX12Q" target="_blank">Ajax参考手册</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <!--  工具手册 end    -->
+            <!-- 标签 start -->
+            <div id="label">
+                <h3>
+                    <i class="iconfont">&#xe60e;</i>标签</h3>
+                <div class="label-content">
+                    {volist name="tag_keyword" id="item" key="k"}
+                    <a href="{:url('search/index',array('keywords' => $item))}" class="a-link-{$k}">{$item}</a> 
+                    {/volist}
+                  
+                </div>
+            </div>
+            <!-- 标签 end -->
+            <!--  时钟 start    -->
+            <time id="time">
+                <p>
+                    <i class="iconfont">&#xe681;</i>
+                </p>
+                <div class="clock">
+                    <ul>
+                    </ul>
+                    <div class="hour">
+                        <em></em>
+                    </div>
+                    <div class="min">
+                    </div>
+                    <div class="sec">
+                    </div>
+                    <span></span>
+
+                </div>
+              
+                <div class="clock-ie"></div>
+            </time>
+            <!--  时钟 end    -->
+            <!--  友链 start    -->
+            <div id="friend-link">
+                <h3>
+                    <i class="iconfont">&#xe601;</i>友情链接</h3>
+                <ul class="clear">
+                    {volist name="friend_link" id="item"}
+                    <li><i class="iconfont">&#xe607;</i><a target="_blank" href="{$item.url}" rel="nofollow">{$item.link_name}</a></li>
+                    {/volist}
+
+                </ul>
+            </div>
+            <!--  友链 end    -->
+        </div>
+        <!--  电影欣赏 start    -->
+        <div id="movie">
+            <h3>
+                <i class="iconfont">&#xe70e;</i>电影欣赏</h3>
+            <div class="movie-show clear">
+                <h4><a href="{:url('MovieShare/index',array('movie_id' => $movie_top_show['id']))}">{$movie_top_show.title}</a></h4>
+                <img data-src="{if condition="$movie_top_show['pic'] neq ''"}__IMG__{$movie_top_show.pic}{else /}__PUBLIC__images/error.png{/if}" alt="{$movie_top_show.title}" src="__PUBLIC__images/lazy.png" title="{$movie_top_show.title}" />
+                <p>
+                {$movie_top_show.top_desc}
+                </p>
+            </div>
+            <ul class="movie-list">
+                {volist name="movie_share" id="item"}
+                <li><i class="iconfont">&#xe680;</i><a href="{:url('MovieShare/index',array('movie_id' => $item['id']))}">{$item.title}</a><span>{$item.create_time}</span></li>
+                {/volist}
+               
+            </ul>
+            <p class="change-other">
+                <a href="javascript:;" id="movie-refresh"><i class="iconfont">&#xe769;</i>换一批</a> 
+                
+            </p>
+        </div>
+        <!--  电影欣赏 end    -->
+        <!--  休闲书籍 start    -->
+        <div id="like-books">      
+            <h3>
+                <i class="iconfont">&#xe642;</i>休闲书籍</h3>
+            <div class="movie-show clear">
+                <h4><a href="{:url('BookShare/index',array('book_id' => $book_top_show['id']))}">{$book_top_show.bookname}</a></h4>
+                <img data-src="{if condition="$book_top_show['pic'] neq ''"}__IMG__{$book_top_show.pic}{else /}__PUBLIC__images/error.png{/if}" src="__PUBLIC__images/lazy.png" alt="{$book_top_show.bookname}" title="{$book_top_show.bookname}" />
+                <p>
+                {$book_top_show.top_desc}
+                </p>
+            </div>
+            <ul class="rest-book-list">
+                {volist name="rest_book" id="item"}
+                <li><i class="iconfont">&#xe680;</i><a href="{:url('BookShare/index',array('book_id' => $item['id']))}">{$item.bookname}</a><span>{$item.book_time}</span></li>
+                {/volist}
+               
+            </ul>
+            <p class="change-other">
+                 <a href="javascript:;" id="rest-book-refresh"><i class="iconfont">&#xe769;</i>换一批</a> 
+            </p>
+        </div> 
+        <!--  休闲书籍 end    --> 
+        <!--  HTML5游戏 start    -->
+        <div id="HTML5-games">
+            <ul class="clear">
+                <li>
+                    <figure>
+        <img data-src="__PUBLIC__images/game1.png" alt="HTML5版切水果游戏" />
+        <figcaption><a href="{:url('HtmlGames/fruit_cut')}" src="__PUBLIC__images/lazy.png" target="_blank" rel="nofollow">HTML5版切水果游戏</a></figcaption>
+        </figure>
+                </li>
+                <li>
+                    <figure>
+        <img data-src="__PUBLIC__images/game2.png" src="__PUBLIC__images/lazy.png" alt="HTML5猜杯子小游戏" />
+        <figcaption><a href="{:url('HtmlGames/guessing_cup')}" target="_blank" rel="nofollow">HTML5猜杯子小游戏</a></figcaption>
+        </figure>
+                </li>
+                <li>
+                    <figure>
+        <img data-src="__PUBLIC__images/game3.png" src="__PUBLIC__images/lazy.png" alt="HTML5五子棋游戏" />
+        <figcaption><a href="{:url('HtmlGames/gobang')}" target="_blank" rel="nofollow">HTML5五子棋游戏</a></figcaption>
+        </figure>
+                </li>
+                <li>
+                    <figure>
+        <img data-src="__PUBLIC__images/game4.png" src="__PUBLIC__images/lazy.png" alt="HTML5小人推箱子小游戏" />
+        <figcaption><a href="{:url('HtmlGames/snake')}" target="_blank" rel="nofollow">HTML5贪吃蛇小游戏</a></figcaption>
+        </figure>
+                </li>
+                <li>
+                    <figure>
+        <img data-src="__PUBLIC__images/game5.png" alt="HTML5吃豆人游戏" src="__PUBLIC__images/lazy.png"/>
+        <figcaption><a href="{:url('HtmlGames/pcman')}" target="_blank" rel="nofollow">HTML5吃豆人游戏</a></figcaption>
+        </figure>
+                </li>
+                <li>
+                    <figure>
+        <img data-src="__PUBLIC__images/game6.png" alt="HTML5重力感应游戏" src="__PUBLIC__images/lazy.png"/>
+        <figcaption><a href="{:url('HtmlGames/gravity')}" target="_blank" rel="nofollow">HTML5重力感应游戏</a></figcaption>
+        </figure>
+                </li>
+            </ul>
+            <span><i class="iconfont">&#xe62b;</i></span>
+            <span><i class="iconfont">&#xe7ba;</i></span>
+        </div>
+        <!--  HTML5游戏 start    -->
+    </div>
+    {include file="common/footer" /} 
+    
+    
+    
+    <script src="__PUBLIC__js/jquery.js"></script>
+    <script src="__PUBLIC__js/domove.js"></script>
+    <script>
+        var imgUrl = "__IMG__";
+    </script>
+    <script src="__PUBLIC__js/functions.js"></script>
+
+</body>
+</html>

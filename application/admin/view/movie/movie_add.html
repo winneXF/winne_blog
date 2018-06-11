@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html><head>
+	    <meta charset="utf-8">
+    <title>添加电影推荐</title>
+
+    <meta name="description" content="Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--Basic Styles-->
+    <link href="__PUBLIC__style/bootstrap.css" rel="stylesheet">
+    <link href="__PUBLIC__style/font-awesome.css" rel="stylesheet">
+    <link href="__PUBLIC__style/weather-icons.css" rel="stylesheet">
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="__PUBLIC__style/beyond.css" rel="stylesheet" type="text/css">
+    <!-- <link href="__PUBLIC__style/demo.css" rel="stylesheet">
+    <link href="__PUBLIC__style/typicons.css" rel="stylesheet"> -->
+    <link href="__PUBLIC__style/animate.css" rel="stylesheet">
+    
+</head>
+<body>
+	<!-- 头部 -->
+    {include file="common/top" /} 
+
+    <!-- /头部 -->
+	
+	<div class="main-container container-fluid">
+		<div class="page-container">
+			<!-- Page Sidebar -->
+            {include file="common/left" /} 
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                             <a href="#">电影推荐</a>
+                        </li>
+                        <li>
+                             <a href="{:url('movie/movie_list')}">电影推荐管理</a>
+                        </li>
+                        <li class="active">添加电影推荐</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+
+                <!-- Page Body -->
+                <div class="page-body">
+                    
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-header bordered-bottom bordered-blue">
+                <span class="widget-caption">新增电影推荐</span>
+            </div>
+            <div class="widget-body">
+                <div id="horizontal-form">
+                    <form class="form-horizontal" role="form" action="" enctype="multipart/form-data" method="post">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label no-padding-right">电影名称</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" required="" id="title" placeholder="" name="title"  type="text">
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="movie_time" class="col-sm-2 control-label no-padding-right">片长</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="movie_time" placeholder="" name="movie_time"  type="text">
+                            </div>
+                        </div>  
+                        
+                        <div class="form-group">
+                            <label for="language" class="col-sm-2 control-label no-padding-right">语言</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="language" placeholder="" name="language"  type="text">
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                            <label for="recommend_num" class="col-sm-2 control-label no-padding-right">推荐指数</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="recommend_num" placeholder="" name="recommend_num"  type="text">
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                            <label for="movie_type" class="col-sm-2 control-label no-padding-right">电影类型</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="movie_type" placeholder="" name="movie_type"  type="text">
+                            </div>
+                        </div> 
+                         <div class="form-group">
+                            <label for="download_url" class="col-sm-2 control-label no-padding-right">下载地址</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" id="download_url" placeholder="" name="download_url"  type="text">
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label for="download_desc" class="col-sm-2 control-label no-padding-right">推荐下载说明</label>
+                            <div class="col-sm-6">
+                                <textarea name="download_desc" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="top_desc" class="col-sm-2 control-label no-padding-right">首页电影的简介</label>
+                            <div class="col-sm-6">
+                                <textarea name="top_desc" class="form-control"></textarea>
+                            </div>
+                            <p class="help-block col-sm-4 red">* 必填（非首页电影推荐不填）</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="pic" class="col-sm-2 control-label no-padding-right">缩略图</label>
+                            <div class="col-sm-6">
+                                <input id="pic" placeholder="" name="pic"  type="file" style="display:inline;">
+                                <img id="img-view" src="" height="80">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="state" class="col-sm-2 control-label no-padding-right">是否推荐</label>
+                            <div class="col-sm-6">
+                                 <label>
+                                    <input class="checkbox-slider colored-darkorange" name="state" type="checkbox">
+                                    <span class="text"></span>
+                                 </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="indexstate" class="col-sm-2 control-label no-padding-right">是否首页推荐</label>
+                            <div class="col-sm-6">
+                                 <label>
+                                    <input id="indexstate" class="checkbox-slider colored-darkorange" name="indexstate" type="checkbox">
+                                    <span class="text"></span>
+                                 </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="movie_content" class="col-sm-2 control-label no-padding-right">电影内容</label>
+                            <div class="col-sm-6">
+                                 <label>
+                                    <textarea name="movie_content"  id="movie_content"></textarea>
+                                 </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">保存信息</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+		</div>	
+	</div>
+
+	    <!--Basic Scripts-->
+    <script src="__PUBLIC__js/jquery.js"></script>
+    <script src="__PUBLIC__js/bootstrap.js"></script>
+    <!--Beyond Scripts-->
+    <script src="__PUBLIC__js/beyond.js"></script>
+    <!-- 百度编辑器引入代码 -->
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+    <!-- <script type="text/javascript" src="__PUBLIC__/ueditor/lang/zh-cn/zh-cn.js"></script> -->
+    <script type="text/javascript">
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    UE.getEditor('movie_content',{initialFrameWidth:700,initialFrameHeight:400,});
+    </script>
+
+
+</body></html>

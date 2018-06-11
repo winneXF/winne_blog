@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>书籍分享</title>
+  <meta name="keywords" content="winne博客,winne前端,推荐书籍" />
+  <meta name="description" content="winne博客的书籍分享，分享精品书籍，收益书籍" />
+  <link href="__PUBLIC__ico/ico.ico" rel="Shortcut Icon" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/mainCommon.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/article.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/info_share.css">
+</head>
+<body data-spy="scroll" data-target=".navbar-article" style="position: relative;">
+{include file="common/detail_header" /} 
+<div id="home" class="tools-main-wrap">
+  
+  <div id="main" class="main-content">
+    <div id="mainContent" class="left-content">
+        <div class="forFlow">
+            
+            <!-- 工具的主体内容信息 -->
+            <div class="tools-detail">
+              <article>
+                <header class="article-header">
+                    <h1 class="tools-name">{$book_detail.bookname}</h1>
+                </header>
+                <div class="software">
+                    <div class="soft-img">
+                       <img src="{if condition="$book_detail['pic'] neq ''"}__IMG__{$book_detail.pic}{else /}__PUBLIC__images/error.png{/if}" alt="">
+                    </div>
+                    
+                      <div class="soft-mes">
+                          <p>推荐指数：<i class="font-icon"></i>
+                          <span >{$book_detail.recommend_num}分</span></p>
+                          <p >推荐时间：{$book_detail.book_time}</p>
+                          <p>出版年月：{$book_detail.publish_time}</p>
+                          <p>推荐栏目：
+                         
+                          {if condition="$book_detail.book_type eq 1"}
+                          HTML/CSS书籍推荐
+                          {elseif condition="$book_detail.book_type eq 2"/}
+                          javascript书籍推荐
+                          {elseif condition="$book_detail.book_type eq 3"/}
+                          休闲书籍
+                          {/if}
+
+                          </p>
+                          <p>作者：{$book_detail.author}</p>
+                          <p>页数：{$book_detail.page_num}</p>
+                          <!-- <div>
+                              <a href="#">点击下载</a>
+                          </div> -->
+                      </div>
+                     
+                    <div class="recommand"></div>
+                </div>
+                <div class="content">
+                    <span>内容简介</span>
+                    <p>
+                      {$book_detail.content}
+                    </p>
+                </div>
+                <div class="content">
+                    <span>推荐说明</span>
+                    <p>
+                       {$book_detail.recommend_desc}
+                    </p>
+                    <!-- <p>软件已经是破解版，安装即可使用。</p> -->
+                </div>
+              </article>
+
+            </div><!--end: tools-detail -->
+
+         <!--  </div> -->
+
+            <!-- 留言内容 -->
+            <div class="comment-mes" id="comment-mes">
+              <div class="comment-show">
+                <!--PC和WAP自适应版畅言-->
+                <div id="SOHUCS" ></div> 
+                <script type="text/javascript"> 
+                (function(){ 
+                var appid = 'cytyoWIi2'; 
+                var conf = 'prod_09532bf8da0a410cb4d433aded759b59'; 
+                var width = window.innerWidth || document.documentElement.clientWidth; 
+                if (width < 960) { 
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+              </div>
+            </div>
+
+        </div><!--end: forFlow -->
+    </div><!--end: mainContent 主体内容容器-->
+    <!-- 右侧文章导航 -->
+    <div id="sideBar" class="right-content">
+      <div class="other-tools clear">
+        <!--  工具手册 start    -->
+            <div id="tool-manual" class="right-bar">
+                <h3>
+                    <i class="iconfont">&#xe642;</i>其他书籍推荐</h3>
+                <div class="manual-content">
+                    <ul>
+                       {volist name="recommend_books" id="item"}
+                        <li><i class="iconfont">&#xe63d;</i><a href="{:url('bookShare/index',array('book_id' => $item['id']))}" title="{$item.bookname}">{$item.bookname}</a></li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+            <!--  工具手册 end    -->
+      </div>
+      
+    </div><!--end: main -->
+    <div class="clear"></div>
+  </div>    
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<div id="floor" style="display: none;">
+    <!-- <a href="javascript:;"><img src="__PUBLIC__images/top.gif" alt=""></a> -->
+</div>
+{include file="common/footer" /} 
+
+<!--PageEndHtml Block End-->
+<script src="__PUBLIC__js/toTop.js"></script>
+<script src="__PUBLIC__js/jquery.js"></script>
+<script src="__PUBLIC__js/info_share.js"></script>
+</body>
+</html>

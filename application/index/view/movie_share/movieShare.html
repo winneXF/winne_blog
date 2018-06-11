@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>winne电影分享</title>
+  <meta name="keywords" content="winne博客,winne前端,电影欣赏" />
+  <meta name="description" content="winne博客的电影欣赏，分享闲暇时间看的电影，劳逸结合" />
+  <link href="__PUBLIC__ico/ico.ico" rel="Shortcut Icon" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/mainCommon.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/article.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/info_share.css">
+</head>
+<body data-spy="scroll" data-target=".navbar-article" style="position: relative;">
+
+    {include file="common/detail_header" /} 
+<div id="home" class="tools-main-wrap">
+  
+  <div id="main" class="main-content">
+    <div id="mainContent" class="left-content">
+        <div class="forFlow">
+            
+            <!-- 工具的主体内容信息 -->
+            <div class="tools-detail">
+              <article>
+                <header class="article-header">
+                    <h1 class="tools-name">{$movie_detail.title}</h1>
+                </header>
+                <div class="software">
+                    <div class="soft-img">
+                       <img src="{if condition="$movie_detail['pic'] neq ''"}__IMG__{$movie_detail.pic}{else /}__PUBLIC__images/error.png{/if}">
+                    </div>
+                    
+                      <div class="soft-mes">
+                          <p>推荐指数：<i class="font-icon"></i>
+                          <span >{$movie_detail.recommend_num}分</span></p>
+                          <p >更新时间：{$movie_detail.create_time}</p>
+                          <p>电影类型：{$movie_detail.movie_type}</p>
+                          <p>语言：{$movie_detail.language}</p>
+                          <p>片长：<span>{$movie_detail.movie_time}</span>分钟</p>
+                          <div>
+                              <a {if condition="$movie_detail['download_url'] neq ''"}target="_blank"{else /}target="_self"{/if} href="{$movie_detail.download_url}">{if condition="$movie_detail['download_url'] neq ''"}点击下载{else /}暂无下载链接{/if}</a>
+                          </div>
+                      </div>
+                     
+                    <div class="recommand"></div>
+                </div>
+                <div class="content">
+                    <span>电影简介</span>
+                    <p>
+                      {$movie_detail.movie_content}
+                    </p>
+                </div>
+                <div class="content">
+                    <span>推荐说明</span>
+                    <p>
+                      {$movie_detail.download_desc}
+                    </p>
+                </div>
+                <p class="download-tips">下载说明：winne博客下载资源都是免费，所有资源都经过检测，绿色无毒，请放心下载！</p>
+              </article>
+
+            </div><!--end: tools-detail -->
+
+         <!--  </div> -->
+
+            <!-- 留言内容 -->
+            <div class="comment-mes" id="comment-mes">
+             
+              <div class="comment-show">
+                <!--PC和WAP自适应版畅言-->
+                <div id="SOHUCS" ></div> 
+                <script type="text/javascript"> 
+                (function(){ 
+                var appid = 'cytyoWIi2'; 
+                var conf = 'prod_09532bf8da0a410cb4d433aded759b59'; 
+                var width = window.innerWidth || document.documentElement.clientWidth; 
+                if (width < 960) { 
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+              </div>
+            </div>
+
+        </div><!--end: forFlow -->
+    </div><!--end: mainContent 主体内容容器-->
+    <!-- 右侧文章导航 -->
+    <div id="sideBar" class="right-content">
+      <div class="other-tools clear">
+        <!--  工具手册 start    -->
+            <div id="tool-manual" class="right-bar">
+                <h3>
+                    <i class="iconfont">&#xe70e;</i>其他电影推荐</h3>
+                <div class="manual-content">
+                    <ul>
+                       {volist name="recommend_movie" id="item"}
+                        <li><i class="iconfont">&#xe63d;</i><a href="{:url('movieShare/index',array('movie_id' => $item['id']))}">{$item.title}</a></li>
+                       {/volist}
+                    </ul>
+                </div>
+            </div>
+            <!--  工具手册 end    -->
+      </div>
+      
+    </div><!--end: main -->
+    <div class="clear"></div>
+  </div>    
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<div id="floor" style="display: none;">
+    <!-- <a href="javascript:;"><img src="__PUBLIC__images/top.gif" alt=""></a> -->
+</div>
+{include file="common/footer" /} 
+<!--  回顶部 start    -->
+<!-- <div id="back-to-top" style="display: none; position:fixed; right: 26px; bottom:60px; height: 50px;
+        width: 50px;">
+        <i class="iconfont" style="font-size: 45px; color: #b99271; cursor: pointer;">&#xe85d;</i>
+</div> -->
+<!--  回顶部 end    -->
+<!--PageEndHtml Block End-->
+<script src="__PUBLIC__js/toTop.js"></script>
+<script src="__PUBLIC__js/jquery.js"></script>
+<script src="__PUBLIC__js/info_share.js"></script>
+</body>
+</html>

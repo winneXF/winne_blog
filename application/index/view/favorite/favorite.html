@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>搜索页面</title>
+  <meta name="keywords" content="winne博客,winne前端,收藏夹" />
+  <meta name="description" content="winne博客的收藏夹" />
+  <link href="__PUBLIC__ico/ico.ico" rel="Shortcut Icon" />
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/mainCommon.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/article.css">
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__css/info_share.css">
+</head>
+<body data-spy="scroll" data-target=".navbar-article" style="position: relative;">
+{include file="common/detail_header" /} 
+<div id="home" class="tools-main-wrap">
+  
+  <div id="main" class="main-content">
+    <div id="mainContent" class="left-content">
+        <div class="forFlow">
+         
+            <!-- 搜索主体内容信息 -->
+          <p class="search-keywords" style="color:#AA7A53;font-weight: bold;">您的收藏夹：</p>
+          <div class="search-content">
+          {if condition="$favoriteC neq 0"}
+            {foreach favoriteres as $item}
+            <article class="article clear">
+                <div class="article-top">
+                    <h2><a href="{:url('article/index',array('article_id' => $item['aid']))}">{$item.title}</a>
+                    </h2>
+                </div>
+                <div class="article-content clear">
+                    <a href=""><img src="{if condition="$item['pic'] neq ''"}__IMG__{$item.pic}{else /}__PUBLIC__images/error.png{/if}" alt="{$item.title}" /></a>
+                    <p>
+                    {$item.descript}
+                    </p>
+                </div>
+                <div class="article-bottom">
+                  <ul class="mes clear">
+                    <li><i class="iconfont">&#xe665;</i>{$item.article_time}</li>
+                    <li><i class="iconfont">&#xe695;</i>{$item.click}浏览</li>
+                  </ul>
+                  <!-- <span></span>
+                  <span></span>
+                  <span></span> -->
+                </div>
+            </article>
+              {/foreach}
+            <div class="pages">
+              {$favoriteres->render()}
+            </div>
+          {else/}          
+            <div class="none-article">收藏夹暂无内容，赶紧去收藏吧~</div>
+       
+           {/if}
+          </div>
+          
+
+
+        </div><!--end: forFlow -->
+    </div><!--end: mainContent 主体内容容器-->
+    <!-- 右侧文章导航 -->
+    <div id="sideBar" class="right-content">
+      <div id="tool-manual" class="right-bar">
+          <h3>
+              <i class="iconfont">&#xe629;</i>热门推荐</h3>
+          <div class="manual-content">
+              <ul>
+                  {volist name="recommend_articles" id="item"}
+                  <li><i class="iconfont">&#xe63d;</i><a href="{:url('article/index',array('article_id' => $item['id']))}">{$item.title}</a></li>
+                  {/volist}
+                  
+              </ul>
+          </div>
+      </div>
+      
+    </div><!--end: main -->
+    <div class="clear"></div>
+  </div>    
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<div id="floor" style="display: none;">
+    <!-- <a href="javascript:;"><img src="./images/top.gif" alt=""></a> -->
+</div>
+{include file="common/footer" /} 
+
+<!--PageEndHtml Block End-->
+<script src="__PUBLIC__js/toTop.js"></script>
+<script src="__PUBLIC__js/jquery.js"></script>
+<script src="__PUBLIC__js/info_share.js"></script>
+</body>
+</html>

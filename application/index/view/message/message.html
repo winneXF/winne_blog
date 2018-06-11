@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>winne~~博客-留言</title>
+    <meta name="keywords" content="winne博客,winne前端，留言，留言板，抢沙发" />
+    <meta name="description" content="给我留言吧。你，生命中最重要的过客，之所以是过客，因为你未曾为我停留。" /> 
+    <link href="__PUBLIC__ico/ico.ico" rel="Shortcut Icon" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__css/mainCommon.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__css/message.css">
+</head>
+<body>
+    
+    {include file="common/main_header" /} 
+    <p class="tips">你，生命中最重要的过客，之所以是过客，因为你未曾为我停留。</p>
+    <div class="body-content-wrapper clear">
+    <!-- 评论区内容 -->
+    <div class="body-left">
+                    <div class="body-left-top">
+                        评论专区</div>
+                    <div id="body-left-comment">
+                        <div id="comments-wrap" style="min-height: 490px;">
+                        
+                            {if condition="$commentNum neq 0"}
+                                {volist name="comments" id="item"}
+                                <div class="comment-wrapper" data-info='{"id":{$item.id},"uid":{$item.user_id}}'>
+                                    <div class="head-img">                                    
+                                        {if condition="$item['pic'] neq '' "}
+                                        <img src="__IMG__{$item.pic}" height="80">
+                                        {else /}
+                                        <img src="__PUBLIC__images/head_img.png" alt="headImage" />
+                                        {/if}
+                                    </div>
+                                    <div class="comment-box">
+                                        <span style="color:Red;">{$item.username}：</span>
+                                        <div class="mes-wrap">
+                                            <p class="mes0"> 
+                                            {$item.content}
+                                            </p>
+                                            {volist name="replays" id="vo"}
+                                            {if condition="$item.id eq $vo.comment_id"}
+                                                {if condition="$item.user_id eq $vo.to_uid"}
+                                                <div class='replay-man' data-info='{$vo.from_uid}'>
+                                                     <span class="re-man" style='color:red;'>{$vo.from_name}：</span>
+                                                     <p style='display: inline-block;'> {$vo.replay_content}</p>
+                                                     <p class='repaly-time'>{$vo.replay_time} <span class='son-replay'><i class='iconfont'>&#xe7ac;</i>回复</span></p>
+                                                     <div class='replay-con'>
+                                                        <textarea></textarea>
+                                                        <div class='sure clear son-replay-sure'><a href='javascript:;'>确定回复</a></div>
+                                                    </div>
+                                                </div>
+                                                {else /}
+                                                <div class='replay-man' data-info='{$vo.from_uid}'>
+                                                     <span class="re-man" style='color:red;'>{$vo.from_name}</span>&nbsp;&nbsp;回复&nbsp;&nbsp;<span style='color:red;'>{$vo.to_name}</span>：
+                                                     <p style='display: inline-block;'> {$vo.replay_content}</p>
+                                                     <p class='repaly-time'>{$vo.replay_time} <span class='son-replay'><i class='iconfont'>&#xe7ac;</i>回复</span></p>
+                                                     <div class='replay-con'>
+                                                        <textarea></textarea>
+                                                        <div class='sure clear son-replay-sure'><a href='javascript:;'>确定回复</a></div>
+                                                    </div>
+                                                 </div>
+                                                {/if}
+                                            {/if}
+                                            {/volist}
+                                            
+
+                                        </div>
+                                        
+                                        <div class="comment-bottom">
+                                        <i class="send-time">{$item.create_time}</i>
+                                        <span class="up"><i class="iconfont">&#xe64a;</i>顶(<span class="up-num">{$item.up_num}</span>)</span>
+                                        <span class="reply-mes"><i class="iconfont">&#xe7ac;</i>回复</span>
+                                        </div>
+                                        <div class="replay-content">
+                                            <textarea></textarea>
+                                            <div class="sure clear replay-sure"><a href="javascript:;">确定回复</a></div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                {/volist}
+                            {else/}
+                            <div id="no-comment" >暂无评论,快来抢沙发啦~~~</div>
+                            {/if}
+                            
+                        </div>
+                        
+                        <div id="page" class="page-wrap clear">
+                            <div class="pages">
+                                {$comments->render()}
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <!--    <hr />  -->
+                    <div class="wrapper-footer-comment">
+                        <div id="footer-comment">
+                            <div id="img-box">
+                                <img src="__PUBLIC__images/head_img.png" alt="headImage" />
+                            </div>
+                            <div id="text-box">
+                                <textarea rows="6" cols="20"></textarea>
+                                <div id="publish">
+                                    发布</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-right">                
+                    <p>
+                        网名：<span style="color: Green">winne</span>&nbsp;|&nbsp; 昵称不可为空<br />
+                        <br />
+                        姓名：雪~F<br />
+                        <br />
+                        爱好：学习、旅游、娱乐...<br />
+                        <br />
+                        喜欢的书：《一路上有你》<br />
+                        <br />
+                        喜欢的音乐：《just one last dance》
+                    </p>
+                    <span class="pic-person"></span>
+                </div>
+    </div>
+    {include file="common/footer" /} 
+    
+    <script src="__PUBLIC__js/toTop.js"></script>
+    <script src="__PUBLIC__js/jquery.js"></script>
+    <script>
+        var imgUrl = "__PUBLIC__";
+    </script>
+    <script src="__PUBLIC__js/message.js"></script>
+</body>
+</html>
